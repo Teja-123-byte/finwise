@@ -1,21 +1,113 @@
-# Finwise
+# Fintrail (Finwise)
 
-A full-stack personal finance dashboard for students and groups.
+**Fintrail** is a full-stack personal finance dashboard built for students, individuals, and small groups. It turns scattered income and spending into a single, clear financial picture — with auto-categorized transactions, savings goals, spending-anomaly awareness, and a shareable "split expense" mode for roommates and group trips.
 
-The repository includes:
+Built for **PixxelHack 2.0** (Problem Statement 4 — Personal Finance Tracker) by **Team Codex Alpha**.
 
-- `backend/` — Express + MongoDB API with JWT auth, group management, transactions, savings goals, and shared split expense persistence.
-- `frontend/` — React + TypeScript app built with Vite, TanStack Start, Tailwind CSS, and PWA support.
+---
+
+## Table of contents
+
+- [Live demo](#live-demo)
+- [Team](#team)
+- [Features](#features)
+- [Screenshots](#screenshots)
+- [Tech stack](#tech-stack)
+- [Architecture](#architecture)
+- [Repository layout](#repository-layout)
+- [Getting started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Backend setup](#backend-setup)
+  - [Frontend setup](#frontend-setup)
+- [Environment variables](#environment-variables)
+- [API routes](#api-routes)
+- [Deployment notes](#deployment-notes)
+- [Useful commands](#useful-commands)
+- [Feasibility, risks & mitigations](#feasibility-risks--mitigations)
+- [Impact & benefits](#impact--benefits)
+- [Research & references](#research--references)
+- [Roadmap](#roadmap)
+- [Contact](#contact)
+
+---
+
+## Live demo
+
+| Layer | URL |
+|---|---|
+| Frontend | [finwise-self-gamma.vercel.app](https://finwise-self-gamma.vercel.app/) |
+| Backend API | [finwise-backend-x5st.onrender.com/api](https://finwise-backend-x5st.onrender.com/api) |
+
+> Note: the backend is hosted on Render's free tier and may take a few seconds to spin up on the first request.
+
+## Team
+
+**Codex Alpha**
+
+- Sai Tejasri Emmadi
+- Saksham Kushwah
 
 ## Features
 
-- User authentication and protected API endpoints
-- Transaction tracking with categories, notes, and dates
-- Savings goals with progress tracking
-- Registered user search and persistent groups for shared expenses
-- Split expense logging, settlement tracking, and bulk clearing of settled entries
-- Net balances and minimal settle-up recommendations
-- Responsive UI optimized for desktop and mobile
+- **Secure accounts** — registration and login with JWT-based authentication
+- **Quick-add transactions** — log an expense or income entry in about ten seconds, with a note, amount, date, and category
+- **Auto-categorization** — a keyword + ML-lite classifier tags each entry (e.g. "Swiggy order" → *Food & drink*) so you rarely have to categorize manually
+- **Monthly dashboard** — income, spend, leftover balance, and savings rate at a glance, updated the moment you add an entry
+- **Spending visualizations** — cumulative day-by-day spending, category breakdown (donut chart), and income vs. spending trends over the last six months
+- **Heads up alerts** — flags unusual spending so surprises don't sneak up on you
+- **Savings goals** — create goals and track progress with visual progress rings
+- **Split with the group** — create shared groups, log shared expenses (rent, groceries, cab fares), and see exactly who owes whom
+- **Smart settlements** — Fintrail computes the simplest way to settle a group's balances in the fewest possible transfers
+- **Full transaction history** — filter by month, category, or keyword; delete entries added by mistake
+- **Responsive UI** — works cleanly across desktop and mobile
+- **Private by design** — your data stays in your own account; nothing is shared with third parties
+
+## Screenshots
+
+The `/docs` or `/screenshots` folder (add your own exported images here) covers:
+
+- **Dashboard** — monthly income, spend, leftover, savings rate, spending-through-the-month chart, category breakdown, and recent activity
+
+- **Transactions** — add and browse all logged entries with search and filters
+- **Split** — group creation, shared expense logging, and net "who owes what" settlement view
+- **Auth** — clean create-account / sign-in flow
+
+## Tech stack
+
+**Frontend**
+- React + TypeScript, built with Vite
+- TanStack Start for routing
+- Tailwind CSS for styling
+- Chart.js for income/expense and category visualizations
+
+**Backend**
+- Node.js + Express REST API
+- MongoDB (via Mongoose) for transaction, goal, group, and split storage
+- JWT-based authentication
+- CORS-enabled API for the deployed frontend origin
+
+**Deployment**
+- Frontend on **Vercel**
+- Backend on **Render**
+- Database on **MongoDB Atlas**
+
+This is a fully deployed working prototype, not just a local demo.
+
+## Architecture
+
+```
+User adds/imports a transaction
+        │
+        ▼
+Auto-categorized by keyword + ML-lite classifier
+        │
+        ▼
+Stored in MongoDB via the Express REST API
+        │
+        ▼
+Dashboard re-renders: monthly summary, category charts,
+savings-goal progress, and group settlements — in real time
+```
 
 ## Repository layout
 
@@ -38,23 +130,25 @@ The repository includes:
     hooks/
     lib/
     routes/
-    ...
+    stores/
 ```
 
-## Prerequisites
+## Getting started
 
-- Node.js 20+ recommended
+### Prerequisites
+
+- Node.js 20+
 - npm
-- MongoDB instance (Atlas or local)
+- A MongoDB instance (Atlas or local)
 
-## Backend setup
+### Backend setup
 
 1. Open a terminal in `backend/`
 2. Install dependencies:
    ```bash
    npm install
    ```
-3. Create or update `.env` with the following values:
+3. Create a `.env` file with the following values:
    ```env
    MONGODB_URI=your-mongodb-connection-string
    MONGODB_DB=fintrail
@@ -63,79 +157,79 @@ The repository includes:
    PORT=5000
    VITE_API_URL=http://localhost:5000/api
    ```
-   If you deploy the backend to Render, set the same `CLIENT_ORIGIN` value in Render environment variables and use the Render `VITE_API_URL` in the frontend.
-4. Start the backend server:
+4. Start the backend:
    ```bash
    npm run dev
    ```
 
-The backend listens on `http://localhost:5000` by default.
+The backend runs at `http://localhost:5000`.
 
-## Frontend setup
+### Frontend setup
 
 1. Open a terminal in `frontend/`
 2. Install dependencies:
    ```bash
    npm install
    ```
-3. Create or update `.env` with the API settings pointing to the backend:
+3. Create a `.env` file pointing at your backend:
    ```env
    VITE_API_URL=https://finwise-backend-x5st.onrender.com/api
    ```
-   If you deploy the frontend to Vercel, also set `VITE_API_URL` in Vercel environment variables to the same backend address.
-4. Start the development server:
+   (use `http://localhost:5000/api` for local development)
+4. Start the frontend:
    ```bash
    npm run dev
    ```
 
-If the deployed frontend still cannot reach the backend, verify that the backend `CLIENT_ORIGIN` includes `https://finwise-self-gamma.vercel.app` and that the backend has been restarted after env changes.
-
-The frontend is intended to run on `http://localhost:3000` by default.
-
-## Build commands
-
-- Backend production-ready startup:
-  ```bash
-  cd backend
-  npm run start
-  ```
-- Frontend build:
-  ```bash
-  cd frontend
-  npm run build
-  ```
+The frontend runs at `http://localhost:3000`.
 
 ## Environment variables
 
 ### Backend
 
-- `MONGODB_URI` — MongoDB connection string
-- `MONGODB_DB` — database name
-- `JWT_SECRET` — JWT signing secret (min 32 chars)
-- `CLIENT_ORIGIN` — allowed frontend origin for CORS
-- `PORT` — API server port
-- `VITE_API_URL` — optional helper for frontend configuration
+| Variable | Description |
+|---|---|
+| `MONGODB_URI` | MongoDB connection string |
+| `MONGODB_DB` | Database name |
+| `JWT_SECRET` | Secret used to sign JWTs (32+ characters) |
+| `CLIENT_ORIGIN` | Comma-separated list of allowed frontend origins for CORS |
+| `PORT` | Backend server port |
+| `VITE_API_URL` | Frontend API base URL (helper reference) |
 
 ### Frontend
 
-- `VITE_API_URL` — backend API base URL used by the app
+| Variable | Description |
+|---|---|
+| `VITE_API_URL` | Backend API base URL |
 
-## Notes
+## API routes
 
-- The backend exposes API routes under `/api`, including `/api/auth`, `/api/transactions`, `/api/goals`, `/api/groups`, and `/api/splits`.
-- The frontend uses TanStack Start with SSR-friendly routing and PWA support.
-- If you make changes to environment variables, restart the relevant server.
+| Route | Purpose |
+|---|---|
+| `/api/auth` | Register, log in, and fetch the current user |
+| `/api/transactions` | Create, read, update, and delete transactions |
+| `/api/goals` | Manage savings goals |
+| `/api/groups` | Manage groups and search for users |
+| `/api/splits` | Manage split expenses and settlement logic |
+
+## Deployment notes
+
+- Frontend deployed to Vercel: `https://finwise-self-gamma.vercel.app/`
+- Backend deployed to Render: `https://finwise-backend-x5st.onrender.com/api`
+- Set `VITE_API_URL` in Vercel's environment variables to the Render backend URL
+- Set `CLIENT_ORIGIN` on Render to include `https://finwise-self-gamma.vercel.app`
+- Restart the backend after changing any Render environment variables
 
 ## Useful commands
 
-From `backend/`:
+**Backend** (`backend/`)
 ```bash
 npm install
 npm run dev
 npm run start
 ```
 
-From `frontend/`:
+**Frontend** (`frontend/`)
 ```bash
 npm install
 npm run dev
@@ -145,8 +239,36 @@ npm run lint
 npm run format
 ```
 
+## Feasibility, risks & mitigations
+
+- Every baseline feature — tracking, monthly summaries, categories, savings goals, and charts — is built on well-documented, free-tier tools and is fully buildable within a hackathon window.
+- **Risk:** students may hesitate to share financial data.
+  **Mitigation:** data stays in the student's own account, encrypted at rest, with no third-party sharing.
+- **Risk:** inconsistent daily logging.
+  **Mitigation:** gentle reminder nudges and a ten-second quick-add flow keep friction near zero.
+
+## Impact & benefits
+
+- **Target audience:** college students, who are often managing money for the first time with no structured tool — Fintrail gives them a habit-forming, judgment-free space to see where their money goes.
+- **Social:** builds financial literacy early and reduces money-related stress among students.
+- **Economic:** savings goals and spending-anomaly alerts help students cut unnecessary spending and avoid debt traps.
+- **Scalability:** the same engine extends naturally to families, freelancers, or small student clubs managing shared budgets.
+
+## Research & references
+
+- [Chart.js documentation](https://www.chartjs.org/) — visualization library used for category and trend charts
+- Studied existing budgeting apps (Mint, YNAB, Walnut) to identify gaps for a lightweight, student-first alternative
+- [MDN Web Docs — Progressive Web Apps](https://developer.mozilla.org/) — offline-first, installable app guidelines
+
+## Roadmap
+
+- [ ] Push notifications for spending anomalies and goal milestones
+- [ ] Multi-currency support
+- [ ] Recurring transaction templates
+- [ ] Installable PWA with offline caching
+
 ## Contact
 
-- GitHub: https://github.com/Teja-123-byte, https://github.com/shhadowpdf
-- App is running on Vercel: https://finwise-self-gamma.vercel.app/
-
+- GitHub: [github.com/Teja-123-byte](https://github.com/Teja-123-byte)
+- ShadowPDF: shhadowpdf
+- Live app: [finwise-self-gamma.vercel.app](https://finwise-self-gamma.vercel.app/)
