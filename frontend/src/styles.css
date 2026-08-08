@@ -1,0 +1,371 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+@import "@fontsource-variable/manrope";
+@import "@fontsource-variable/sora";
+@import "@fontsource-variable/jetbrains-mono";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/*
+ * Design system definition.
+ *
+ * The @theme inline block maps CSS custom properties to Tailwind utility
+ * classes (e.g. --color-primary -> bg-primary, text-primary).
+ *
+ * The :root and .dark blocks define the actual color values using oklch.
+ * All colors MUST use oklch format.
+ *
+ * To add a new semantic color:
+ * 1. Add the variable to :root (light value) and .dark (dark value)
+ * 2. Register it in @theme inline as --color-<name>: var(--<name>)
+ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+:root {
+  --radius: 0.625rem;
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.21 0.034 264.665);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.21 0.034 264.665);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.21 0.034 264.665);
+  --primary: oklch(0.488 0.243 264.376);
+  --primary-foreground: oklch(0.984 0.003 247.858);
+  --secondary: oklch(0.967 0.003 264.542);
+  --secondary-foreground: oklch(0.21 0.034 264.665);
+  --muted: oklch(0.967 0.003 264.542);
+  --muted-foreground: oklch(0.551 0.027 264.364);
+  --accent: oklch(0.967 0.003 264.542);
+  --accent-foreground: oklch(0.21 0.034 264.665);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.984 0.003 247.858);
+  --border: oklch(0.928 0.006 264.531);
+  --input: oklch(0.928 0.006 264.531);
+  --ring: oklch(0.488 0.243 264.376);
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --sidebar: oklch(0.984 0.003 247.858);
+  --sidebar-foreground: oklch(0.21 0.034 264.665);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
+  --sidebar-accent: oklch(0.967 0.003 264.542);
+  --sidebar-accent-foreground: oklch(0.21 0.034 264.665);
+  --sidebar-border: oklch(0.928 0.006 264.531);
+  --sidebar-ring: oklch(0.488 0.243 264.376);
+}
+
+.dark {
+  --background: oklch(0.129 0.042 264.695);
+  --foreground: oklch(0.984 0.003 247.858);
+  --card: oklch(0.208 0.042 265.755);
+  --card-foreground: oklch(0.984 0.003 247.858);
+  --popover: oklch(0.208 0.042 265.755);
+  --popover-foreground: oklch(0.984 0.003 247.858);
+  --primary: oklch(0.929 0.013 255.508);
+  --primary-foreground: oklch(0.208 0.042 265.755);
+  --secondary: oklch(0.279 0.041 260.031);
+  --secondary-foreground: oklch(0.984 0.003 247.858);
+  --muted: oklch(0.279 0.041 260.031);
+  --muted-foreground: oklch(0.704 0.04 256.788);
+  --accent: oklch(0.279 0.041 260.031);
+  --accent-foreground: oklch(0.984 0.003 247.858);
+  --destructive: oklch(0.704 0.191 22.216);
+  --destructive-foreground: oklch(0.984 0.003 247.858);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.551 0.027 264.364);
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: oklch(0.208 0.042 265.755);
+  --sidebar-foreground: oklch(0.984 0.003 247.858);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
+  --sidebar-accent: oklch(0.279 0.041 260.031);
+  --sidebar-accent-foreground: oklch(0.984 0.003 247.858);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.551 0.027 264.364);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+  }
+}
+
+/* ---------------------------------------------------------------------------
+ * Fintrail design tokens
+ * --pos / --neg carry money direction; --cat-* is the categorical palette and
+ * is a category's identity everywhere it appears.
+ * ------------------------------------------------------------------------ */
+
+:root {
+  --radius: 0.5rem;
+  --background: oklch(0.973 0.005 106);
+  --card: oklch(1 0 0);
+  --muted: oklch(0.958 0.004 106);
+  --border: oklch(0.928 0.006 264.531);
+  --panel-grid: oklch(0.936 0.005 264);
+
+  --pos: oklch(0.58 0.14 152);
+  --neg: oklch(0.6 0.19 18);
+
+  --cat-food: oklch(0.68 0.15 62);
+  --cat-rent: oklch(0.53 0.18 264);
+  --cat-transport: oklch(0.6 0.12 195);
+  --cat-education: oklch(0.53 0.18 312);
+  --cat-entertainment: oklch(0.62 0.18 8);
+  --cat-shopping: oklch(0.6 0.15 330);
+  --cat-subscriptions: oklch(0.58 0.12 232);
+  --cat-health: oklch(0.58 0.14 152);
+  --cat-other: oklch(0.52 0.03 258);
+  --cat-allowance: oklch(0.55 0.13 145);
+  --cat-stipend: oklch(0.55 0.14 175);
+  --cat-freelance: oklch(0.58 0.15 100);
+}
+
+.dark {
+  --background: oklch(0.178 0.014 264);
+  --card: oklch(0.216 0.016 264);
+  --card-foreground: oklch(0.968 0.004 258);
+  --popover: oklch(0.216 0.016 264);
+  --muted: oklch(0.262 0.016 264);
+  --muted-foreground: oklch(0.706 0.02 262);
+  --border: oklch(0.315 0.016 264);
+  --input: oklch(0.315 0.016 264);
+  --panel-grid: oklch(0.3 0.016 264);
+
+  --pos: oklch(0.73 0.14 155);
+  --neg: oklch(0.71 0.16 20);
+
+  --cat-food: oklch(0.79 0.14 68);
+  --cat-rent: oklch(0.68 0.16 264);
+  --cat-transport: oklch(0.75 0.12 196);
+  --cat-education: oklch(0.7 0.16 310);
+  --cat-entertainment: oklch(0.73 0.16 10);
+  --cat-shopping: oklch(0.72 0.14 330);
+  --cat-subscriptions: oklch(0.72 0.12 232);
+  --cat-health: oklch(0.73 0.14 155);
+  --cat-other: oklch(0.72 0.02 258);
+  --cat-allowance: oklch(0.74 0.13 148);
+  --cat-stipend: oklch(0.74 0.13 178);
+  --cat-freelance: oklch(0.76 0.14 100);
+}
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+  }
+  .tnum,
+  table,
+  .kpi-value {
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: "tnum";
+  }
+}
+
+/* ---------------------------------------------------------------------------
+ * Surface registers
+ * Three levels only: stage (bare page), raised (analytic panels), sunken
+ * (reference material). Retune the tokens here to re-key the whole page.
+ * ------------------------------------------------------------------------ */
+
+:root {
+  --surface-border: oklch(0.87 0.008 264);
+  --surface-raised-bg: var(--card);
+  --surface-raised-radius: 1rem;
+  --surface-raised-highlight: inset 0 1px 0 0 oklch(1 0 0 / 0.9);
+  --surface-raised-shadow:
+    0 1px 2px oklch(0.21 0.034 264 / 0.07), 0 10px 28px -10px oklch(0.21 0.034 264 / 0.14);
+
+  --surface-sunken-bg: var(--card);
+  --surface-sunken-radius: 1rem;
+  --surface-sunken-shadow:
+    0 1px 2px oklch(0.21 0.034 264 / 0.07), 0 8px 22px -12px oklch(0.21 0.034 264 / 0.12);
+
+  --page-glow: radial-gradient(
+    900px 420px at 50% -10%,
+    oklch(0.55 0.12 264 / 0.035),
+    transparent 70%
+  );
+  --page-wash: linear-gradient(to bottom, oklch(0.975 0.004 106), oklch(0.968 0.005 106));
+}
+
+.dark {
+  --surface-border: oklch(0.32 0.016 264);
+  --surface-raised-bg: var(--card);
+  --surface-raised-highlight: inset 0 1px 0 0 oklch(1 0 0 / 0.07);
+  --surface-raised-shadow:
+    0 1px 2px oklch(0 0 0 / 0.4), 0 18px 44px -14px oklch(0 0 0 / 0.55);
+
+  --surface-sunken-bg: oklch(0.152 0.014 264);
+  --surface-sunken-shadow: inset 0 2px 6px -2px oklch(0 0 0 / 0.5);
+
+  --page-glow: radial-gradient(
+    1000px 600px at 50% -10%,
+    oklch(0.6 0.16 264 / 0.16),
+    transparent 72%
+  );
+  --page-wash: linear-gradient(to bottom, oklch(0.196 0.016 264), oklch(0.163 0.013 264));
+}
+
+@layer base {
+  body {
+    background-image: var(--page-glow), var(--page-wash);
+    background-attachment: fixed, fixed;
+    background-repeat: no-repeat, no-repeat;
+    background-size: cover, cover;
+  }
+
+  html.dark,
+  html.dark body {
+    background-color: var(--background);
+    color: var(--foreground);
+  }
+}
+
+
+/* Radius sits in the base layer so a Tailwind radius utility (e.g. rounded-full
+ * on the nav pill) can still override it. */
+@layer base {
+  .panel,
+  .surface-raised {
+    border-radius: var(--surface-raised-radius);
+  }
+  .surface-sunken {
+    border-radius: var(--surface-sunken-radius);
+  }
+}
+
+@layer utilities {
+  .panel,
+  .surface-raised {
+    background-color: var(--surface-raised-bg);
+    border: 1px solid var(--surface-border);
+    box-shadow: var(--surface-raised-highlight), var(--surface-raised-shadow);
+  }
+  .surface-sunken {
+    background-color: var(--surface-sunken-bg);
+    border: 1px solid var(--surface-border);
+    box-shadow: var(--surface-sunken-shadow);
+  }
+
+  .hairline {
+    border-color: var(--color-border);
+  }
+  .scroll-x {
+    scrollbar-width: thin;
+  }
+  .scroll-x::-webkit-scrollbar {
+    height: 6px;
+  }
+  .scroll-x::-webkit-scrollbar-thumb {
+    background: var(--color-border);
+    border-radius: 999px;
+  }
+}
+
+
+
+/* ---------------------------------------------------------------------------
+ * Dashboard type system
+ * Swap these three tokens to re-type the whole dashboard.
+ * ------------------------------------------------------------------------ */
+
+:root {
+  --app-font-body: "Manrope Variable", ui-sans-serif, system-ui, sans-serif;
+  --app-font-display: "Sora Variable", "Manrope Variable", ui-sans-serif, sans-serif;
+  --app-font-numeric: "JetBrains Mono Variable", ui-monospace, SFMono-Regular, monospace;
+}
+
+@theme inline {
+  --font-sans: var(--app-font-body);
+  --font-display: var(--app-font-display);
+  --font-mono: var(--app-font-numeric);
+}
+
+@layer base {
+  html,
+  body {
+    font-family: var(--app-font-body);
+  }
+  h1,
+  .display {
+    font-family: var(--app-font-display);
+    letter-spacing: -0.025em;
+  }
+  h2,
+  h3 {
+    font-family: var(--app-font-display);
+    letter-spacing: -0.01em;
+  }
+  .tnum,
+  .num {
+    font-family: var(--app-font-numeric);
+    font-variant-numeric: tabular-nums lining-nums;
+    font-feature-settings: "tnum", "lnum";
+  }
+  /* KPI figures set in the display face, per the bento direction. */
+  .kpi-value {
+    font-family: var(--app-font-display);
+    font-variant-numeric: tabular-nums lining-nums;
+    letter-spacing: -0.02em;
+  }
+  /* Chart text inside SVG picks up the mono numerals via .tnum too. */
+  svg text.tnum {
+    font-family: var(--app-font-numeric);
+  }
+}
