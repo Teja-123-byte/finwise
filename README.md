@@ -79,7 +79,7 @@ The backend listens on `http://localhost:5000` by default.
    ```
 3. Create or update `.env` with the API settings pointing to the backend:
    ```env
-   VITE_API_URL=http://localhost:5000/api
+   VITE_API_URL=https://finwise-backend-x5st.onrender.com/api
    ```
 4. Start the development server:
    ```bash
