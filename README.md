@@ -272,6 +272,5 @@ npm run format
 
 ## Contact
 
-- GitHub: [github.com/Teja-123-byte](https://github.com/Teja-123-byte)
-- ShadowPDF: shhadowpdf
+- GitHub: [github.com/Teja-123-byte](https://github.com/Teja-123-byte),[github.com/shhadowpdf](https://github.com/shhadowpdf)
 - Live app: [finwise-self-gamma.vercel.app](https://finwise-self-gamma.vercel.app/)
