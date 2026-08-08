@@ -14,6 +14,7 @@ if (!process.env.JWT_SECRET || process.env.JWT_SECRET.length < 32) {
 
 const app = express();
 const configuredOrigins = process.env.CLIENT_ORIGIN?.split(",").map((origin) => origin.trim()).filter(Boolean) ?? [];
+console.log(`CORS allowed origins: ${configuredOrigins.length ? configuredOrigins.join(", ") : "all origins"}`);
 app.use(cors({
   origin: configuredOrigins,
   credentials: true

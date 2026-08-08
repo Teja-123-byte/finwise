@@ -59,10 +59,11 @@ The repository includes:
    MONGODB_URI=your-mongodb-connection-string
    MONGODB_DB=fintrail
    JWT_SECRET=your-random-secret-at-least-32-characters
-   CLIENT_ORIGIN=http://localhost:3000
+   CLIENT_ORIGIN=http://localhost:3000,https://finwise-self-gamma.vercel.app
    PORT=5000
    VITE_API_URL=http://localhost:5000/api
    ```
+   If you deploy the backend to Render, set the same `CLIENT_ORIGIN` value in Render environment variables and use the Render `VITE_API_URL` in the frontend.
 4. Start the backend server:
    ```bash
    npm run dev
@@ -81,10 +82,13 @@ The backend listens on `http://localhost:5000` by default.
    ```env
    VITE_API_URL=https://finwise-backend-x5st.onrender.com/api
    ```
+   If you deploy the frontend to Vercel, also set `VITE_API_URL` in Vercel environment variables to the same backend address.
 4. Start the development server:
    ```bash
    npm run dev
    ```
+
+If the deployed frontend still cannot reach the backend, verify that the backend `CLIENT_ORIGIN` includes `https://finwise-self-gamma.vercel.app` and that the backend has been restarted after env changes.
 
 The frontend is intended to run on `http://localhost:3000` by default.
 

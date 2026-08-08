@@ -1,6 +1,6 @@
 import { getAuthTokenCookie } from "@/lib/auth-cookie";
 
-const API_URL = import.meta.env.VITE_API_URL;
+const API_URL = import.meta.env.VITE_API_URL ?? "https://finwise-backend-x5st.onrender.com/api";
 
 export async function apiRequest<T>(path: string, options: RequestInit = {}): Promise<T> {
   const token = getAuthTokenCookie();
