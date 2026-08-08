@@ -1,6 +1,6 @@
-# Fintrail (Finwise)
+# Finwise
 
-**Fintrail** is a full-stack personal finance dashboard built for students, individuals, and small groups. It turns scattered income and spending into a single, clear financial picture — with auto-categorized transactions, savings goals, spending-anomaly awareness, and a shareable "split expense" mode for roommates and group trips.
+**Finwise** is a full-stack personal finance dashboard built for students, individuals, and small groups. It turns scattered income and spending into a single, clear financial picture — with auto-categorized transactions, savings goals, spending-anomaly awareness, and a shareable "split expense" mode for roommates and group trips.
 
 Built for **PixxelHack 2.0** (Problem Statement 4 — Personal Finance Tracker) by **Team Codex Alpha**.
 
