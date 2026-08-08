@@ -15,13 +15,8 @@ if (!process.env.JWT_SECRET || process.env.JWT_SECRET.length < 32) {
 const app = express();
 const configuredOrigins = process.env.CLIENT_ORIGIN?.split(",").map((origin) => origin.trim()).filter(Boolean) ?? [];
 app.use(cors({
-  origin(origin, callback) {
-    const isLocalDevelopment = Boolean(origin && /^http:\/\/localhost:\d+$/.test(origin));
-    if (!origin || configuredOrigins.length === 0 || configuredOrigins.includes(origin) || isLocalDevelopment) {
-      return callback(null, true);
-    }
-    return callback(new Error("This website is not allowed to call the API."));
-  },
+  origin: configuredOrigins,
+  credentials: true
 }));
 app.use(express.json({ limit: "100kb" }));
 
