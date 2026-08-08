@@ -64,13 +64,16 @@ Built for **PixxelHack 2.0** (Problem Statement 4 — Personal Finance Tracker) 
 
 ## Screenshots
 
-The `/docs` or `/screenshots` folder (add your own exported images here) covers:
+The `/docs` or `/screenshots` folder  covers:
 
 - **Dashboard** — monthly income, spend, leftover, savings rate, spending-through-the-month chart, category breakdown, and recent activity
-
+  <img width="1088" height="884" alt="Screenshot 2026-08-08 143746" src="https://github.com/user-attachments/assets/40b76d36-304e-4abd-8207-e777513109d6" />
 - **Transactions** — add and browse all logged entries with search and filters
+  <img width="1200" height="489" alt="Screenshot 2026-08-08 143823" src="https://github.com/user-attachments/assets/8926e5bc-20f4-4aa3-863f-f0c78469739b" />
 - **Split** — group creation, shared expense logging, and net "who owes what" settlement view
+  <img width="1247" height="911" alt="Screenshot 2026-08-08 143849" src="https://github.com/user-attachments/assets/cbdd16b7-1dc3-4e64-a944-a85f8f5b45a4" />
 - **Auth** — clean create-account / sign-in flow
+ <img width="1220" height="597" alt="Screenshot 2026-08-08 143916" src="https://github.com/user-attachments/assets/47abc92a-90dc-4742-803a-a0125124995a" />
 
 ## Tech stack
 
