@@ -1,4 +1,4 @@
-# Meridian Stride Showcase
+# Finwise
 
 A full-stack personal finance dashboard for students and groups.
 
