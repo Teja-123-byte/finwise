@@ -147,4 +147,6 @@ npm run format
 
 ## Contact
 
-This README is generated for the Meridian Stride Showcase repository. Adapt or extend it as needed for deployment or onboarding.
+- GitHub: https://github.com/Teja-123-byte, https://github.com/shhadowpdf
+- App is running on Vercel: https://finwise-self-gamma.vercel.app/
+
